@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: mydb
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: mydb
@@ -15,15 +15,9 @@ spec:
       containers:
       - name: mydb
         image: mysql:5.7
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "P123456p"
-        - name: MYSQL_DATABASE
-          value: "phonebook"
-        - name: MYSQL_USER
-          value: "admin"
-        - name: MYSQL_PASSWORD
-          value: "Clarusway_1"
+        envFrom:
+        - secretRef:
+           name: mysecret
         resources:
         ports:
         - containerPort: 3306
@@ -51,4 +45,3 @@ spec:
   ports:
   - port: 3306
     targetPort: 3306
-
