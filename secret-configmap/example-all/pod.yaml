@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod
+  labels:
+    name: pod
+spec:
+  containers:
+  - name: pod
+    image: nginx
+    resources:      
+    volumeMounts:
+      - name: secret-volume
+        mountPath: /secret        
+      - name:  config-volume
+        mountPath:  /config
+    envFrom:
+      - secretRef:
+          name: mysecret
+      - configMapRef:
+          name: myconfigmap
+    env:
+      - name: foo
+        valueFrom:
+          configMapKeyRef:
+            name: myconfigmap2
+            key: foo
+      - name: username
+        valueFrom:
+          secretKeyRef:
+            name: mysecret2
+            key: username
+  volumes:
+    - name: secret-volume
+      secret:
+        secretName: mysecret
+    - name: config-volume
+      configMap:
+        name: myconfigmap
