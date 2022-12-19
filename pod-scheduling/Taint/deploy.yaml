@@ -1,0 +1,28 @@
+# kubectl taint nodes kube-worker-1 clarus=way:NoSchedule
+# kubectl describe node kube-worker-1 | grep -i taint
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    environment: dev
+spec:
+  replicas: 15
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+      tolerations:
+      - key: "clarus"
+        operator: "Exists"
+        effect: "NoSchedule"
