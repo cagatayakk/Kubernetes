@@ -1,1 +1,1 @@
-[Affinity](affinity.jpg)
+![Affinity](affinity.jpg)
