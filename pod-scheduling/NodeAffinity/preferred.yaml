@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    environment: dev
+spec:
+  replicas: 15
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:  
+          - weight: 1           # second Choice                                   
+            preference:                                      
+              matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - large
+          - weight: 2           # first Choice                                           
+            preference:                                      
+              matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - medium
