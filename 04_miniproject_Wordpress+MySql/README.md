@@ -13,8 +13,11 @@ Project Instructions
 6: Deploy the wordpress application in both "test" and "production" namespaces (created from wordpress:latest and mysql:5.6 images)
 
  -> mysql will be accessible from within the cluster with a "ClusterIp" type service.
+ 
  -> Long term data of both applications will be stored on "persistent volumes".
+ 
  -> Both applications will be scheduled on the same worker node.
+ 
  -> Cpu and memory resource constraints will be defined for both applications.
 
 7: The wordpress application deployed in the "test" namespace will be exposed to the outside world as "testblog.example.com" and the wordpress application deployed in the "production" namespace will be exposed to the outside world via ingress as "companyblog.example.com".
