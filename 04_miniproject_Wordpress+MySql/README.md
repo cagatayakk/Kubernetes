@@ -31,6 +31,3 @@ Project Instructions
 11: Deploy a 2 node "mongodb" cluster as a "statefulset" in the cluster. Make sure that the "mongodb" cluster is running.
 
 12: Create a "service account" with "read and list" rights on all objects in the cluster. Create a pod to which you connect this service account and list all pods in the cluster with "curl".
-
-
-Translated with www.DeepL.com/Translator (free version)
