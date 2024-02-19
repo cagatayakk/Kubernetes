@@ -17,7 +17,11 @@ spec:
         image: cagatayakk/demo:latest
         resources:
         ports:
-        - containerPort: 80         
+        - containerPort: 80 
+      initContainers:
+      - name: initcontainer
+        image: busybox
+        command: ['sh', '-c', "until nc -zvw 1 mycluster 3306; do echo 'Waiting for database_pod'; sleep 2; done"]
 ---
 apiVersion: v1
 kind: Service
