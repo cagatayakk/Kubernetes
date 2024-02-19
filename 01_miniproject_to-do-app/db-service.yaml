@@ -4,11 +4,10 @@ metadata:
   name: db-service
   labels:
     name: mongo
-    app: todoapp
 spec:
   selector:
     name: mongo
-  type: ClusterIP
+  clusterIP: None
   ports:
     - name: db
       port: 27017

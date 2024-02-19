@@ -29,3 +29,7 @@ spec:
             requests:
               memory: 250Mi
               cpu: 80m
+      initContainers:
+      - name: initcontainer
+        image: busybox
+        command: ['sh', '-c', "until nc -zvw 1 db-service 27017; do echo 'Waiting for MongoDB_pod'; sleep 2; done"]
